@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { BodyComponent } from '@darshanpatel2608/human-body-react';
 import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
 
 // Modal styling
 const customStyles = {
@@ -20,8 +21,13 @@ const customStyles = {
 };
 
 const App = () => {
+  const navigate = useNavigate()
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [clickedPart, setClickedPart] = useState('');
+
+  const handleCancel = () =>{
+    navigate('/')
+  }
 
   const handlePartClick = (partId) => {
     setModalIsOpen(true);
@@ -66,7 +72,7 @@ const App = () => {
     <div className='flex flex-col gap-4 '>
         <div className=" mt-2 flex justify-between items-center">
         <h1 className='pl-16 font-semibold text-lg'>Symptom Checker</h1>
-        <i class="fa-solid fa-xmark ml-20 bg-gray-400 text-white rounded-full h-5 w-5 text-center pt-[2px]"></i>
+        <i onClick={handleCancel} class="fa-solid fa-xmark ml-20 bg-gray-400 text-white rounded-full h-5 w-5 text-center pt-[2px]"></i>
         </div>
         <div className='flex gap-4'>
             <button className='text-blue-400 text-lg'>Search</button>
